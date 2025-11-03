@@ -12,16 +12,7 @@ if (!API_KEY) {
 
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
-const model = ai.chats.create({
-  model: 'gemini-2.5-flash',
-  config: {
-    systemInstruction: `You are "Study Buddy," a friendly and helpful AI assistant for students of NIOS (National Institute of Open Schooling). 
-    Your goal is to provide clear, concise, and encouraging answers to their questions about subjects, concepts, TMAs (Tutor Marked Assignments), and practical files. 
-    Keep your tone supportive and easy to understand. Do not answer questions outside of the educational context.`,
-  },
-});
-
-
+// FIX: Removed unused `model` constant that was creating a chat instance at the module level.
 export const sendMessageToBot = async (history: Message[], newMessage: string): Promise<string> => {
     try {
         const chat: Chat = ai.chats.create({

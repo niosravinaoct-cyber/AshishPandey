@@ -1,9 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import { TMA_FILES } from '../constants';
 import { TMAFile } from '../types';
+import RequestFormModal from '../components/RequestFormModal';
 
 const TMAsPage: React.FC = () => {
     const [selectedClass, setSelectedClass] = useState('All');
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const filteredFiles = useMemo(() => {
         if (selectedClass === 'All') {
@@ -26,14 +28,12 @@ const TMAsPage: React.FC = () => {
                         <button onClick={() => setSelectedClass('Class 10')} className={`px-4 py-2 text-sm font-medium rounded-full ${selectedClass === 'Class 10' ? 'bg-primary text-white shadow' : 'text-gray-600'}`}>Class 10</button>
                         <button onClick={() => setSelectedClass('Class 12')} className={`px-4 py-2 text-sm font-medium rounded-full ${selectedClass === 'Class 12' ? 'bg-primary text-white shadow' : 'text-gray-600'}`}>Class 12</button>
                     </div>
-                    <a 
-                        href="https://forms.gle/your-custom-form-link" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
+                    <button 
+                        onClick={() => setIsModalOpen(true)}
                         className="mt-4 md:mt-0 px-6 py-2 text-sm font-medium text-white bg-accent rounded-full hover:bg-accent-hover transition-colors shadow"
                     >
                         Request Customized File
-                    </a>
+                    </button>
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -57,6 +57,7 @@ const TMAsPage: React.FC = () => {
                     </div>
                 )}
             </div>
+            <RequestFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </div>
     );
 };

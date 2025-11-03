@@ -44,7 +44,7 @@ const ContactPage: React.FC = () => {
                     </svg>
                   </div>
                   <div className="ml-3 text-base text-gray-600">
-                    <p>info@dneducation.in</p>
+                    <p>info@ddeducation.in</p>
                   </div>
                 </div>
                 <div className="flex items-start">

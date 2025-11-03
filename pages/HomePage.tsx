@@ -1,31 +1,39 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { POPULAR_COURSES } from '../constants';
-import Card from '../components/Card';
+import CourseCard from '../components/CourseCard';
 
 const Banner: React.FC = () => (
-  <div className="bg-primary/10 rounded-lg m-4 p-8">
-    <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-        <div className="text-center md:text-left">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                <span className="block">Manzil Batch Oct 2025 / Apr 2026</span>
-            </h1>
-            <p className="mt-3 text-lg text-gray-600">
-                Join our comprehensive batch to ensure your success in the upcoming exams.
-            </p>
-             <div className="mt-4 flex items-center justify-center md:justify-start gap-4">
-                <span className="text-3xl font-bold text-primary">₹1999</span>
-                <span className="text-xl text-gray-500 line-through">₹3999</span>
+  <div className="bg-white rounded-lg m-4 shadow-xl overflow-hidden">
+    <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row items-center">
+            <div className="p-8 md:w-1/2 text-center md:text-left">
+                <h1 className="text-3xl font-extrabold tracking-tight text-slate-800 sm:text-4xl lg:text-5xl">
+                    <span className="block">LAKSHYA SCIENCE Batch</span>
+                </h1>
+                <p className="mt-4 text-lg text-gray-600">
+                    Join our comprehensive batch to ensure your success in the NIOS Class 12th exams. Get expert guidance from top teachers.
+                </p>
+                <div className="mt-6 flex items-center justify-center md:justify-start gap-4">
+                    <span className="text-4xl font-bold text-primary">₹3499</span>
+                    <span className="text-xl text-gray-500 line-through">₹4999</span>
+                </div>
+                 <div className="mt-6">
+                    <p className="text-sm font-semibold text-gray-700 mb-2">Taught by:</p>
+                    <div className="flex justify-center md:justify-start -space-x-2">
+                        <img className="inline-block h-10 w-10 rounded-full ring-2 ring-white" src="https://picsum.photos/seed/teacher1/40/40" alt="Teacher R. Verma" />
+                        <img className="inline-block h-10 w-10 rounded-full ring-2 ring-white" src="https://picsum.photos/seed/teacher2/40/40" alt="Teacher S. Khan" />
+                    </div>
+                 </div>
+                <div className="mt-8">
+                    <a href="#/login" className="inline-block px-10 py-3 border border-transparent text-base font-medium rounded-full text-white bg-primary shadow-lg hover:bg-primary-hover transform hover:scale-105 transition-transform">
+                        Enroll Now
+                    </a>
+                </div>
             </div>
-            <div className="mt-6">
-                <a href="#/login" className="inline-block px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-primary hover:bg-primary-hover">
-                    Join Now
-                </a>
+            <div className="md:w-1/2">
+                <img src="https://picsum.photos/seed/batch/600/400" alt="LAKSHYA SCIENCE Batch" className="w-full h-full object-cover"/>
             </div>
-        </div>
-        <div>
-            {/* You can replace this with a relevant image */}
-            <img src="https://via.placeholder.com/400x250/2563EB/FFFFFF?text=DNEducation+Batch" alt="Manzil Batch" className="rounded-lg shadow-lg"/>
         </div>
     </div>
   </div>
@@ -33,20 +41,25 @@ const Banner: React.FC = () => (
 
 const Testimonials: React.FC = () => {
     const testimonials = [
-        { name: 'Rohan Sharma', text: 'The solved TMAs were a lifesaver! I scored so much better than I expected. Highly recommended.', image: 'https://via.placeholder.com/100' },
-        { name: 'Priya Patel', text: 'Excellent notes and the practice tests really helped build my confidence for the final exams.', image: 'https://via.placeholder.com/100' },
-        { name: 'Amit Singh', text: 'DNEducation is the best platform for NIOS students. The support is amazing.', image: 'https://via.placeholder.com/100' },
+        { name: 'Rohan Sharma', text: 'The solved TMAs were a lifesaver! I scored so much better than I expected. Highly recommended.', image: 'https://picsum.photos/seed/rohan/100/100' },
+        { name: 'Priya Patel', text: 'Excellent notes and the practice tests really helped build my confidence for the final exams.', image: 'https://picsum.photos/seed/priya/100/100' },
+        { name: 'Amit Singh', text: 'DD EDUCATION is the best platform for NIOS students. The support is amazing.', image: 'https://picsum.photos/seed/amit/100/100' },
     ];
     return (
-        <div className="py-12 bg-gray-50">
+        <div className="py-16 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl font-bold text-center mb-10">What Our Students Say</h2>
-                <div className="grid md:grid-cols-3 gap-8 text-center">
+                <h2 className="text-3xl font-bold text-center mb-12 text-slate-800">What Our Students Say</h2>
+                <div className="grid md:grid-cols-3 gap-8">
                     {testimonials.map(t => (
-                        <div key={t.name} className="bg-white p-6 rounded-lg shadow-md">
-                            <img className="w-20 h-20 mx-auto rounded-full -mt-12 border-4 border-white" src={t.image} alt={t.name} />
-                            <h3 className="mt-4 text-xl font-semibold">{t.name}</h3>
-                            <p className="mt-2 text-gray-600">"{t.text}"</p>
+                        <div key={t.name} className="bg-slate-50 p-6 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
+                           <div className="flex items-center mb-4">
+                             <img className="w-16 h-16 rounded-full border-4 border-white shadow-md" src={t.image} alt={t.name} />
+                             <div className="ml-4">
+                               <h3 className="text-xl font-semibold text-slate-800">{t.name}</h3>
+                               <p className="text-sm text-gray-500">NIOS Student</p>
+                             </div>
+                           </div>
+                            <p className="text-gray-600 italic">"{t.text}"</p>
                         </div>
                     ))}
                 </div>
@@ -57,10 +70,10 @@ const Testimonials: React.FC = () => {
 
 
 const HomeAbout: React.FC = () => (
-    <div className="py-12">
+    <div className="py-16 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold">We help you Dream, Achieve & Succeed.</h2>
-            <p className="mt-4 text-lg text-gray-600">DNEducation is your dedicated partner in navigating the NIOS curriculum. We provide meticulously crafted study materials, solved assignments, and practical files to ensure you have everything you need to excel in your studies and achieve your academic goals with confidence.</p>
+            <h2 className="text-3xl font-bold text-slate-800">We help you <span className="text-primary">Dream, Achieve & Succeed.</span></h2>
+            <p className="mt-4 text-lg text-gray-600">DD EDUCATION is your dedicated partner in navigating the NIOS curriculum. We provide meticulously crafted study materials, solved assignments, and practical files to ensure you have everything you need to excel in your studies and achieve your academic goals with confidence.</p>
         </div>
     </div>
 );
@@ -69,17 +82,14 @@ const HomeAbout: React.FC = () => (
 const PopularCourses: React.FC = () => {
     const navigate = useNavigate();
     return (
-        <div className="py-12 bg-gray-50">
+        <div className="py-16 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl font-bold text-center mb-10">Popular Courses</h2>
+                <h2 className="text-3xl font-bold text-center mb-12 text-slate-800">Popular Courses</h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {POPULAR_COURSES.map(course => (
-                        <Card 
+                        <CourseCard 
                             key={course.id}
-                            title={course.title}
-                            description={course.description}
-                            icon={<course.icon className="w-10 h-10" />}
-                            actionText="View Details"
+                            course={course}
                             onActionClick={() => navigate('/courses')}
                         />
                     ))}
@@ -92,12 +102,12 @@ const PopularCourses: React.FC = () => {
 
 const HomePage: React.FC = () => {
   return (
-    <>
+    <div className="bg-slate-50">
       <Banner />
       <Testimonials />
       <HomeAbout />
       <PopularCourses />
-    </>
+    </div>
   );
 };
 

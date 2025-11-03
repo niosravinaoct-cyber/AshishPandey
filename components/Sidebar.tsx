@@ -1,70 +1,98 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { HomeIcon, AcademicCapIcon, ClipboardDocumentListIcon, DocumentDuplicateIcon, NewspaperIcon, BookOpenIcon, GiftIcon, DocumentTextIcon } from '../constants';
+import { NavLink } from 'react-router-dom';
+import { HomeIcon, AcademicCapIcon, CalendarIcon, NewspaperIcon, LibraryIcon, VideoCameraIcon, ClipboardListIcon, LogoIcon } from '../constants';
 
 interface SidebarProps {
   sidebarOpen: boolean;
   setSidebarOpen: (open: boolean) => void;
 }
 
-const navItems = [
-    { name: 'Home', path: '/', icon: HomeIcon },
-    { name: 'Courses', path: '/courses', icon: AcademicCapIcon },
-    { name: 'Test Series', path: '/test-series', icon: ClipboardDocumentListIcon },
-    { name: 'Previous Year Papers', path: '/previous-papers', icon: DocumentDuplicateIcon },
-    { name: 'Current Affairs', path: '/current-affairs', icon: NewspaperIcon },
-    { name: 'Books', path: '/books', icon: BookOpenIcon },
-    { name: 'Free Courses', path: '/free-courses', icon: GiftIcon },
-    { name: 'PDF Notes', path: '/notes', icon: DocumentTextIcon },
+const navigation = [
+  { name: 'Home', href: '/', icon: HomeIcon },
+  { name: 'Courses', href: '/courses', icon: AcademicCapIcon },
+  { name: 'Test Series', href: '/test-series', icon: CalendarIcon },
+  { name: 'Previous Year Papers', href: '/previous-papers', icon: NewspaperIcon },
+  { name: 'Current Affairs', href: '/current-affairs', icon: NewspaperIcon },
+  { name: 'Books', href: '/books', icon: LibraryIcon },
+  { name: 'Free Courses', href: '/free-courses', icon: VideoCameraIcon },
+  { name: 'PDF Notes', href: '/pdf-notes', icon: ClipboardListIcon },
 ];
 
-const SidebarNavLink: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }) => {
-    return (
-      <NavLink
-        to={to}
-        end
-        className={({ isActive }) =>
-          `flex items-center px-4 py-2 mt-2 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-700 ${
-            isActive ? 'bg-primary/20 text-primary' : ''
-          }`
-        }
-      >
-        {children}
-      </NavLink>
-    );
-};
+const NavLinks: React.FC<{onLinkClick?: () => void}> = ({onLinkClick}) => (
+    <nav className="flex-1 px-2 space-y-1">
+        {navigation.map((item) => (
+            <NavLink
+                key={item.name}
+                to={item.href}
+                end={item.href === '/'}
+                onClick={onLinkClick}
+                className={({ isActive }) =>
+                    `group flex items-center px-2 py-2.5 text-sm font-medium rounded-md ${
+                    isActive
+                        ? 'bg-primary text-white shadow-md'
+                        : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                    }`
+                }
+            >
+                <item.icon
+                    className="mr-3 flex-shrink-0 h-6 w-6"
+                    aria-hidden="true"
+                />
+                {item.name}
+            </NavLink>
+        ))}
+    </nav>
+);
 
 const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
   return (
     <>
-      {/* Mobile sidebar overlay */}
-      <div
-        className={`fixed inset-0 z-20 bg-black opacity-50 transition-opacity lg:hidden ${sidebarOpen ? 'block' : 'hidden'}`}
-        onClick={() => setSidebarOpen(false)}
-      ></div>
-
-      <div
-        className={`fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto bg-white transition-transform duration-300 transform lg:translate-x-0 lg:static lg:inset-0 ${
-          sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'
-        }`}
-      >
-        <div className="flex items-center justify-center mt-8">
-            <Link to="/" className="flex items-center gap-2">
-                 <svg className="h-8 w-8 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                    <path d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
-                </svg>
-                <span className="text-gray-800 text-2xl font-semibold">DNEducation</span>
-            </Link>
+      {/* Static sidebar for desktop */}
+      <div className="hidden lg:flex lg:flex-shrink-0">
+        <div className="flex flex-col w-64">
+          <div className="flex flex-col h-0 flex-1 border-r border-gray-200 bg-white">
+             <div className="flex-1 flex flex-col overflow-y-auto pt-5 pb-4">
+                <NavLinks />
+            </div>
+          </div>
         </div>
+      </div>
 
-        <nav className="mt-10 px-2">
-            {navItems.map(item => (
-                <SidebarNavLink key={item.name} to={item.path}>
-                    <item.icon className="w-5 h-5" />
-                    <span className="mx-4 font-medium">{item.name}</span>
-                </SidebarNavLink>
-            ))}
-        </nav>
+      {/* Mobile sidebar */}
+      <div className={`lg:hidden ${sidebarOpen ? 'block' : 'hidden'}`} role="dialog" aria-modal="true">
+        {/* Backdrop */}
+        <div 
+          className="fixed inset-0 bg-gray-600 bg-opacity-75 z-30" 
+          aria-hidden="true"
+          onClick={() => setSidebarOpen(false)}
+        ></div>
+        
+        <div className="fixed inset-y-0 left-0 w-64 flex z-40">
+            <div className="flex-1 flex flex-col max-w-xs w-full bg-white">
+                <div className="absolute top-0 right-0 -mr-12 pt-2">
+                    <button
+                        type="button"
+                        className="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                        onClick={() => setSidebarOpen(false)}
+                    >
+                        <span className="sr-only">Close sidebar</span>
+                        <svg className="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
+                     <div className="flex items-center flex-shrink-0 px-4">
+                        <LogoIcon className="h-8 w-auto text-primary" />
+                        <span className="text-xl font-bold text-primary ml-2">DD EDUCATION</span>
+                    </div>
+                    <div className="mt-5">
+                        <NavLinks onLinkClick={() => setSidebarOpen(false)}/>
+                    </div>
+                </div>
+            </div>
+        </div>
       </div>
     </>
   );

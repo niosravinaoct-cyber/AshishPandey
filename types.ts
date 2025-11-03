@@ -1,11 +1,19 @@
 import React from 'react';
 
+export interface Teacher {
+    name: string;
+    image: string;
+}
+
 export interface Course {
   id: number;
   title: string;
   description: string;
-  // Fix: Replaced `JSX.Element` with `React.ReactElement` to resolve the 'Cannot find namespace JSX' error.
   icon: (props: React.ComponentProps<'svg'>) => React.ReactElement;
+  price: number;
+  originalPrice?: number;
+  thumbnailUrl: string;
+  teachers?: Teacher[];
 }
 
 export interface TMAFile {
@@ -37,7 +45,6 @@ export interface Quiz {
     title: string;
     subject: string;
     description: string;
-    // Fix: Replaced `JSX.Element` with `React.ReactElement` to resolve the 'Cannot find namespace JSX' error.
     icon: (props: React.ComponentProps<'svg'>) => React.ReactElement;
     questions: Question[];
 }
@@ -54,6 +61,7 @@ export interface TestSeries {
     title: string;
     description: string;
     status: 'Upcoming' | 'Active' | 'Completed';
+    price: string;
 }
 
 export interface Paper {

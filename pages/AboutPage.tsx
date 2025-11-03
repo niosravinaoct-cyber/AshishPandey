@@ -20,7 +20,7 @@ const AboutPage: React.FC = () => {
               Our Mission & Vision
             </h3>
             <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-              We believe that every student deserves the best resources to succeed. DNEducation was founded with the vision to bridge the gap in study materials for the National Institute of Open Schooling. We aim to be the most trusted platform for NIOS students.
+              We believe that every student deserves the best resources to succeed. DD EDUCATION was founded with the vision to bridge the gap in study materials for the National Institute of Open Schooling. We aim to be the most trusted platform for NIOS students.
             </p>
           </div>
         </div>

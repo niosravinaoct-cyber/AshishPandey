@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
   const legalLinks = [
     { name: 'Terms & Conditions', path: '#' },
     { name: 'Privacy Policy', path: '#' },
-    { name: 'Disclaimer', path: '#' },
+    { name: 'Refunds & Cancellation', path: '#' },
   ];
 
   return (
@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About Section */}
           <div className="space-y-4 col-span-1 md:col-span-2">
-            <h3 className="text-lg font-semibold">DNEducation</h3>
+            <h3 className="text-lg font-semibold">DD EDUCATION</h3>
             <p className="text-gray-400 text-sm max-w-md">We help you Dream, Achieve & Succeed. Your one-stop platform for NIOS solved TMAs, practical files, and study resources.</p>
              <div className="flex space-x-6 mt-6">
                 <SocialIcon href="#">
@@ -43,32 +43,40 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Links and App Download */}
+          <div className="grid grid-cols-2 md:grid-cols-1 gap-8">
+            <div>
+              <h3 className="text-sm font-semibold tracking-wider uppercase">Quick Links</h3>
+              <ul className="mt-4 space-y-2">
+                {quickLinks.map(link => (
+                  <li key={link.name}>
+                    <Link to={link.path} className="text-base text-gray-300 hover:text-white text-sm">{link.name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+             <div className="mt-8 md:mt-0">
+                <h3 className="text-sm font-semibold tracking-wider uppercase">Legal</h3>
+                <ul className="mt-4 space-y-2">
+                {legalLinks.map(link => (
+                    <li key={link.name}>
+                    <Link to={link.path} className="text-base text-gray-300 hover:text-white text-sm">{link.name}</Link>
+                    </li>
+                ))}
+                </ul>
+            </div>
+          </div>
+          
           <div>
-            <h3 className="text-sm font-semibold tracking-wider uppercase">Quick Links</h3>
-            <ul className="mt-4 space-y-2">
-              {quickLinks.map(link => (
-                <li key={link.name}>
-                  <Link to={link.path} className="text-base text-gray-300 hover:text-white text-sm">{link.name}</Link>
-                </li>
-              ))}
-            </ul>
+            <h3 className="text-sm font-semibold tracking-wider uppercase">Download App</h3>
+             <a href="#" className="mt-4 inline-block">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" className="h-12"/>
+             </a>
           </div>
 
-          {/* Legal Links */}
-          <div>
-            <h3 className="text-sm font-semibold tracking-wider uppercase">Support</h3>
-            <ul className="mt-4 space-y-2">
-              {legalLinks.map(link => (
-                <li key={link.name}>
-                  <Link to={link.path} className="text-base text-gray-300 hover:text-white text-sm">{link.name}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
         <div className="mt-8 border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
-          <p>&copy; {new Date().getFullYear()} DNEducation. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} DD EDUCATION. All rights reserved.</p>
         </div>
       </div>
     </footer>
